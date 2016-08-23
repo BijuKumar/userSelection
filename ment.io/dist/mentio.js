@@ -695,6 +695,8 @@ angular.module('mentio')
                 if (selectedElementIsTextAreaOrInput(ctx)) {
                     coordinates = getTextAreaOrInputUnderlinePosition(ctx, getDocument(ctx).activeElement,
                         mentionInfo.mentionPosition);
+						
+						
                 } else {
                     coordinates = getContentEditableCaretPosition(ctx, mentionInfo.mentionPosition);
                 }
@@ -721,8 +723,8 @@ angular.module('mentio')
         function scrollIntoView(ctx, elem)
         {
             // cheap hack in px - need to check styles relative to the element
-            var reasonableBuffer = 20;
-            var maxScrollDisplacement = 100;
+            var reasonableBuffer = 0;
+            var maxScrollDisplacement = 0;
             var clientRect;
             var e = elem[0];
             while (clientRect === undefined || clientRect.height === 0) {
@@ -1217,7 +1219,7 @@ angular.module('mentio')
 
             var coordinates = {
                 top: span.offsetTop + parseInt(computed.borderTopWidth) + parseInt(computed.fontSize),
-                left: span.offsetLeft + parseInt(computed.borderLeftWidth)
+                left: span.offsetLeft + parseInt(computed.borderLeftWidth)+ 15
             };
 
             localToGlobalCoordinates(ctx, element, coordinates);

@@ -700,15 +700,20 @@ angular.module('mentio')
                 } else {
                     coordinates = getContentEditableCaretPosition(ctx, mentionInfo.mentionPosition);
                 }
-
+				var totalHeightOfPage = (document.height !== undefined) ? document.height : document.body.offsetHeight;
+				var heightOfMenuBox = totalHeightOfPage - coordinates.top - 15 
                 // Move the button into place.
                 selectionEl.css({
                     top: coordinates.top + 'px',
                     left: coordinates.left + 'px',
                     position: 'absolute',
                     zIndex: 10000,
-                    display: 'block'
-                });
+                    display: 'block',
+					overflowY: 'scroll',
+					maxHeight: heightOfMenuBox + 'px',
+					borderRadius: 4 + 'px',
+					border: '1px solid #D1D2D4'
+             });
 
                 $timeout(function(){
                     scrollIntoView(ctx, selectionEl);

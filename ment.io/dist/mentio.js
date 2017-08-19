@@ -709,7 +709,7 @@ angular.module('mentio')
                     position: 'absolute',
                     zIndex: 10000,
                     display: 'block',
-					overflowY: 'scroll',
+					overflowY: 'auto',
 					maxHeight: heightOfMenuBox + 'px',
 					borderRadius: 4 + 'px',
 					border: '1px solid #D1D2D4'

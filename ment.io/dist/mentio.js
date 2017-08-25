@@ -700,8 +700,10 @@ angular.module('mentio')
                 } else {
                     coordinates = getContentEditableCaretPosition(ctx, mentionInfo.mentionPosition);
                 }
-				var totalHeightOfPage = (document.height !== undefined) ? document.height : document.body.offsetHeight;
-				var heightOfMenuBox = totalHeightOfPage - coordinates.top - 15 
+				var totalHeightOfWindow =  window.innerHeight;
+				var heightOfMenuBox = totalHeightOfWindow - coordinates.top - 15 ;
+				var scrolledHeightOfBody = $window.pageYOffset;
+				coordinates.top += scrolledHeightOfBody;
                 // Move the button into place.
                 selectionEl.css({
                     top: coordinates.top + 'px',
@@ -1121,7 +1123,10 @@ angular.module('mentio')
         }
 
         function localToGlobalCoordinates(ctx, element, coordinates) {
-            var obj = element;
+           
+		
+		   
+		   var obj = element;
             var iframe = ctx ? ctx.iframe : null;
             while(obj) {
                 coordinates.left += obj.offsetLeft + obj.clientLeft;
@@ -1148,6 +1153,7 @@ angular.module('mentio')
                 }
             }            
          }
+	
 
         function getTextAreaOrInputUnderlinePosition (ctx, element, position) {
             var properties = [
